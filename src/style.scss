@@ -4,3 +4,16 @@ body {
   font-family: $font-default;
   margin: 0;
 }
+
+button {
+  outline: 0px;
+  border: 0px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.circle {
+  border-radius: 999px;
+}

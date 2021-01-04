@@ -1,0 +1,27 @@
+.main-btn-page {
+  position: absolute;
+  bottom: 25px;
+  right: 35px;
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0px 35px 0px;
+  }
+
+  .btn-page {
+    height: 55px;
+    width: 55px;
+    padding: 0px;
+    margin: 0px 5px;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.MuiCollapse-container  {
+    margin-bottom: -25px;
+}

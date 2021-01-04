@@ -1,26 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { Header } from '../index'
-import { Button, Menu, Dropdown } from 'antd'
+import Collapse from '@material-ui/core/Collapse'
 import './App.scss'
 
+const pageList = ['facebook', 'instagramm', 'mymir']
+
 const App = ({ match }) => {
-  let handleMenuClick = (e) => {
-    console.log('click: ', e.key)
+  const [page, setPage] = useState(pageList[0])
+  const [isHoverBtnPage, setIsHoverBtnPage] = useState(false)
+
+  let handleBtnPageClick = (page) => {
+    setIsHoverBtnPage(false)
+    setPage(page)
   }
 
-  let menu = (
-    <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1">1st item</Menu.Item>
-      <Menu.Item key="2">2nd item</Menu.Item>
-      <Menu.Item key="3">3rd item</Menu.Item>
-    </Menu>
-  )
+  let btnPageStyle = (icon) => ({
+    backgroundImage: `url("/assets/img/${icon}.png")`,
+    backgroundSize: 'cover',
+  })
 
   return (
     <>
-      {/* <Header match={match} /> */}
-      <Dropdown.Button overlay={menu}></Dropdown.Button>
+      <div className="main-btn-page" onMouseEnter={() => setIsHoverBtnPage(true)} onMouseLeave={() => setIsHoverBtnPage(false)}>
+        <Collapse in={isHoverBtnPage}>
+          <div className="list">
+            {pageList.map((value, index) => {
+              return page == pageList[index] ? (
+                ''
+              ) : (
+                <button
+                  key={index}
+                  className="btn-page circle"
+                  style={btnPageStyle(pageList[index])}
+                  onClick={() => {
+                    handleBtnPageClick(value)
+                  }}
+                ></button>
+              )
+            })}
+          </div>
+        </Collapse>
+        <button className="btn-page circle" style={btnPageStyle(page)}></button>
+      </div>
       <Switch>
         <Route exact path={`${match.path}`}>
           <div>x0</div>
